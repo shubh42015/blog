@@ -1,0 +1,22 @@
+<h1>Blog List </h1>
+<table class="table.table-striped  ">
+  <% @blogs.each do |blog| %>
+    <tr>
+      <th><%= link_to blog.blog_name, blog_path(blog) %></th>  
+    </tr>
+    <% if blog.user == current_user  %>
+      <tr>
+          <td><%= link_to 'Edit Blog ', edit_blog_path(blog) %></td>
+          <td><%= link_to 'Delete Blog ', blog_path(blog),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td><td>|</td>
+          <td><%= link_to 'Create Post', new_blog_post_path(blog)%></td>
+          <% if current_user.has_role? :admin %>
+            <td><%= link_to 'Approve Blog', verify_blog_path(blog.id) %></td>
+          <% end -%>
+      </tr>   
+    <% end -%> 
+  <% end %>
+</table>
+  <%= link_to "Create Blog?", new_blog_path, :class => 'navbar-link' %>
+

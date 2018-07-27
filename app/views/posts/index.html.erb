@@ -1,0 +1,17 @@
+<table>
+  <% @blog.posts.each do |post| %>
+    <tr>
+      <th><%= link_to post.title, blog_post_path(post.blog_id, post.id) %></th>  
+  
+    <% if @blog.user == current_user %>
+      <tr>
+        <td><%= link_to 'Edit', edit_blog_post_path(post.blog, post) %></td>
+        <td>|</td>
+        <td><%= link_to 'Destroy Post', [post.blog, post],
+          method: :delete,
+          data: { confirm: 'Are you sure'} %></td>
+      </tr>
+    <% end %>
+</tr> 
+  <% end %>
+</table>

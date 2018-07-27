@@ -1,0 +1,13 @@
+ <% @post.comments.each do |comment| %>
+    <p>
+      User id :<%= comment.user_id %><br>Comment: <%= comment.body %> 
+      <% if user_signed_in? %>    
+        <% if comment.user_id == current_user.id %>
+          <%= link_to 'Edit', edit_blog_post_comment_path(@blog, @post, comment.id) %>
+          <%= link_to 'Destroy', blog_post_comment_path(@blog, @post, comment.id),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+        <% end %></p>    
+      <% end %>
+    <hr/>
+  <% end %>

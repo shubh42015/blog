@@ -1,0 +1,24 @@
+<h1><%= @post.title %></h1>
+
+<% if @post.avatar.attached? %>
+  <p>
+    <strong>Post Image:</strong><br>
+    <%= image_tag(@post.avatar) %>
+  </p>
+<% end -%> 
+
+<p>
+  <strong>Content:</strong> <%= @post.content %>
+</p>
+
+
+<p>
+  <strong>Comments:</strong><br>
+    <%=  render 'comments/comment' %>
+
+</p>
+
+<h3>Leave a Comment</h3>
+  <%=  render 'comments/form' %>
+
+<%= link_to 'Back', blogs_path %>

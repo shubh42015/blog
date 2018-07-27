@@ -1,0 +1,28 @@
+<%= form_with(model: [@blog, @post], local: true) do |form| %>
+  <p>
+    <%= form.label :title%><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </p>
+  
+  <div class="field">
+    <% if @post.avatar.attached? %>
+      <p>
+        <strong>Post Image:</strong><br>
+        <%= image_tag(@post.avatar) %>
+      </p>
+      <% else %>
+        <%= form.label :Post_Image%><br />
+        <%= form.file_field :avatar, autofocus: true, autocomplete: "avatar" %>
+    <% end %>
+  </div>
+  <br>
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
